@@ -28,7 +28,9 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::delete('exams/{id}/delete', [ExamController::class, 'destroy']);
-    
+    Route::post('exams/create', [ExamController::class, 'create']);
+    Route::put('exams/name/{id}/edit', [ExamController::class, 'editName']);
+        
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
@@ -38,3 +40,5 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::get('students', [StudentController::class, 'index']);
 Route::get('students/{id}', [StudentController::class, 'show']);
 Route::get('exams', [ExamController::class, 'index']);
+Route::get('studentexams', [StudentExamController::class, 'index']);
+Route::get('studentexams/{id}', [StudentExamController::class, 'showExams']);
